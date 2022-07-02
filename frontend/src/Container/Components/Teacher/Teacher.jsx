@@ -58,7 +58,11 @@ function Teacher() {
       );
     });
   } else if (teachers.length === 0) {
-    html = <tr>Empty...</tr>;
+    html = (
+      <tr>
+        <td>Empty...</td>
+      </tr>
+    );
   }
   return (
     <div className="container-fluid mt-1 p-1">
@@ -73,7 +77,7 @@ function Teacher() {
                 <th>No.</th>
                 <th>Name of Teacher</th>
                 <th>Contact</th>
-                <th>Action</th>
+                <th>view</th>
                 <th>Assigned Students</th>
               </tr>
             </thead>
