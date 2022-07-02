@@ -68,7 +68,7 @@ function Student() {
     teacherHtml = teachers.map((item, i) => {
       return (
         <tr key={i}>
-          <td>{item.teach_id}</td>
+          <td>{++i}</td>
           <td>{item.teach_name}</td>
           <td>{item.teach_email}</td>
           <td>{item.teach_city}</td>
@@ -78,7 +78,9 @@ function Student() {
   } else {
     teacherHtml = (
       <tr>
-        <td colSpan={4} className="text-center">No Teachers has assigned...</td>
+        <td colSpan={4} className="text-center">
+          No Teachers has assigned...
+        </td>
       </tr>
     );
   }
