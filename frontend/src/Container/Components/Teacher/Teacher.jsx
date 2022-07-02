@@ -84,10 +84,10 @@ function Teacher() {
                   aria-label="Close"
                 ></button>
               </div>
-              <div className="modal-body">
+              <div className="modal-body container-fluid">
                 <div className="container-fluid">
                   <div className="row">
-                    <div className="col col-sm-12">
+                    <div className="col-sm-12">
                       <div className="row">
                         <div className="col-6 col-sm-6">
                           <pre>Teacher Name :</pre>
