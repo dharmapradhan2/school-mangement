@@ -106,7 +106,7 @@ function Teacher() {
                 <div className="container-fluid">
                   <div className="row">
                     <div className="col-sm-12">
-                      <div className="row text-wrap">
+                      <div className="row">
                         <div className="col-6 col-sm-6">
                           <pre>Teacher Name :</pre>
                           <pre>Teacher Email :</pre>
@@ -143,6 +143,7 @@ function Teacher() {
             </div>
           </div>
         </div>
+        {/* model 2 */}
         <div
           className="modal fade"
           id="exampleModal2"
@@ -167,7 +168,7 @@ function Teacher() {
                 <div className="container-fluid">
                   <div className="row">
                     <div className="col-sm-12">
-                      <table className="table table-sm text-wrap">
+                      <table className="table table-sm">
                         <thead>
                           <tr>
                             <th>Roll No.</th>
@@ -193,18 +194,6 @@ function Teacher() {
                   </div>
                 </div>
               </div>
-              {/* <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                  <button type="button" className="btn btn-primary">
-                    Save changes
-                  </button>
-                </div> */}
             </div>
           </div>
         </div>
