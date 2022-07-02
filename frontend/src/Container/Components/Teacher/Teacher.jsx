@@ -95,6 +95,7 @@ function Teacher() {
                           <pre>Teacher Phone No. :</pre>
                           <pre>Teacher Qualification :</pre>
                           <pre>Teacher Address :</pre>
+                          <pre>No of Students assigned :</pre>
                         </div>
                         <div className="col-6 col-sm-6">
                           <pre>{showData.teach_name}</pre>
@@ -102,6 +103,7 @@ function Teacher() {
                           <pre>{showData.teach_contact}</pre>
                           <pre>{showData.teach_qualification}</pre>
                           <pre>{showData.teach_address}</pre>
+                          {/* <pre>{Object.values(showData.students).length}</pre> */}
                         </div>
                       </div>
                     </div>
