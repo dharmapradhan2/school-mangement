@@ -124,21 +124,28 @@ class StudentController extends Controller
     public function update(Request $request, Student $Student, $id)
     {
         $request->validate([
-            'teach_name' => 'required|string',
-            'teach_email' => 'required|email',
-            'teach_qualification' => 'required',
-            'teach_contact' => 'required',
-            'teach_address' => 'required',
-            'teach_city' => 'required',
+            'stud_name' => 'required|string',
+            'stud_email' => 'required|email',
+            'stud_class' => 'required',
+            'stud_ph_no' => 'required',
+            'stud_father_name' => 'required',
+            'stud_mother_name' => 'required',
+            'stud_address' => 'required',
+            'prin_id' => 'required',
+            'teach_id' => 'required|array',
         ]);
-        $update = $Student::where('teach_id', $id)->update([
-            'teach_name' => $request['teach_name'],
-            'teach_email' => $request['teach_email'],
-            'teach_qualification' => $request['teach_qualification'],
-            'teach_contact' => $request['teach_contact'],
-            'teach_address' => $request['teach_address'],
-            'teach_city' => $request['teach_city'],
+        $update = $Student::where('stud_id', $id)->update([
+            'stud_name' => $request['stud_name'],
+            'stud_email' => $request['stud_email'],
+            'stud_class' => $request['stud_class'],
+            'stud_ph_no' => $request['stud_ph_no'],
+            'father_name' => $request['stud_father_name'],
+            'mother_name' => $request['stud_mother_name'],
+            'address' => $request['stud_address'],
+            'prin_id' => $request['prin_id'],
         ]);
+        $teach_id = $request->teach_id;
+        $Student->teachers()->attach($teach_id);
         if ($update) {
             return response()->json(['success' => 'Student\'s data is updated Sucessfully.'], 200);
         } else {
