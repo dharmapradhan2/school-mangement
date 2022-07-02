@@ -15,7 +15,7 @@ class StudentController extends Controller
     public function getStudents()
     {
         $data = Student::all();
-        if (count($data)>0) {
+        if (count($data) > 0) {
             return response()->json($data, 200);
         } else {
             return response()->json(['error' => 'No Data is here..'], 404);
@@ -46,30 +46,35 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'teach_name' => 'required|string',
-            'teach_email' => 'required|email',
-            'teach_qualification' => 'required',
-            'teach_contact' => 'required',
-            'teach_address' => 'required',
-            'teach_city' => 'required',
+            'stud_name' => 'required|string',
+            'stud_email' => 'required|email',
+            'stud_class' => 'required',
+            'stud_ph_no' => 'required',
+            'stud_father_name' => 'required',
+            'stud_mother_name' => 'required',
+            'stud_address' => 'required',
             'prin_id' => 'required',
+            'teach_id' => 'required|array',
         ]);
-        $search = Student::where('teach_name', $request->teach_name)->where('teach_email', $request->teach_email)->get();
+        $search = Student::where('stud_name', $request->stud_name)->where('stud_email', $request->stud_email)->get();
         if (count($search) == 0) {
             $Student = Student::create([
-                'teach_name' => $request['teach_name'],
-                'teach_email' => $request['teach_email'],
-                'teach_qualification' => $request['teach_qualification'],
-                'teach_contact' => $request['teach_contact'],
-                'teach_address' => $request['teach_address'],
-                'teach_city' => $request['teach_city'],
+                'stud_name' => $request['stud_name'],
+                'stud_email' => $request['stud_email'],
+                'stud_class' => $request['stud_class'],
+                'stud_ph_no' => $request['stud_ph_no'],
+                'father_name' => $request['stud_father_name'],
+                'mother_name' => $request['stud_mother_name'],
+                'address' => $request['stud_address'],
                 'prin_id' => $request['prin_id'],
             ]);
+            $teach_id = $request->teach_id;
+            $Student->teachers()->attach($teach_id);
             return response()->json(['success' => 'Student data is  Sucessfully added.'], 200);
         } else {
             return response()->json(['warning' => 'Student data is  already present.'], 206);
         }
-        // return response()->json('request');
+        // return response()->json($teachers_id);
         // here if during insertion if foreign key 'prin_id' is not avilable in parent model (principal table) then it'll through an error (500 internal server error)
     }
 
@@ -88,7 +93,16 @@ class StudentController extends Controller
             return response()->json(['warning' => 'No Such data found...'], 404);
         }
     }
-
+    // show single student data with teachers
+    public function showStudentWithTeacher(Student $Student, $id)
+    {
+        $data = $Student::with('teachers')->find($id);
+        if ($data) {
+            return response()->json($data, 200);
+        } else {
+            return response()->json(['warning' => 'No Such data found...'], 404);
+        }
+    }
     /**
      * Show the form for editing the specified resource.
      *

@@ -15,7 +15,7 @@ class TeacherController extends Controller
     public function getTeachers()
     {
         $data = Teacher::all();
-        if (count($data)>0) {
+        if (count($data) > 0) {
             return response()->json($data, 200);
         } else {
             return response()->json(['error' => 'No Data is present..'], 404);
@@ -27,12 +27,12 @@ class TeacherController extends Controller
         $data = Teacher::with('principal')->get();
         return response()->json($data, 200);
     }
-     // to get student data through teacher table foreign key
-     public function getDataWithStudent()
-     {
-         $data = Teacher::with('students')->get();
-         return response()->json($data, 200);
-     }
+    // to get student data through teacher table foreign key
+    public function getDataWithStudent()
+    {
+        $data = Teacher::with('students')->get();
+        return response()->json($data, 200);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -94,7 +94,15 @@ class TeacherController extends Controller
             return response()->json(['warning' => 'No Such data found...'], 404);
         }
     }
-
+    public function showTeacherWithStudents(Teacher $teacher, $id)
+    {
+        $data = $teacher::with('students')->find($id);
+        if ($data) {
+            return response()->json($data, 200);
+        } else {
+            return response()->json(['warning' => 'No Such data found...'], 404);
+        }
+    }
     /**
      * Show the form for editing the specified resource.
      *

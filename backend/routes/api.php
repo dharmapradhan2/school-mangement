@@ -28,6 +28,7 @@ Route::post('storeTeacher', [TeacherController::class,'store']);
 Route::get('showTeacher/{id}', [TeacherController::class,'show']);
 Route::get('showPrincipalByTeacher', [TeacherController::class,'index']);
 Route::get('showStudentsByTeacher', [TeacherController::class,'getDataWithStudent']);
+Route::get('showTeacherWithStudents/{id}', [TeacherController::class,'showTeacherWithStudents']);
 Route::put('updateTeacher/{id}', [TeacherController::class,'update']);
 Route::delete('deleteTeacher/{id}', [TeacherController::class,'destroy']);
 
@@ -35,6 +36,7 @@ Route::delete('deleteTeacher/{id}', [TeacherController::class,'destroy']);
 Route::get('getStudents', [StudentController::class,'getStudents']);
 Route::post('storeStudent', [StudentController::class,'store']);
 Route::get('showStudent/{id}', [StudentController::class,'show']);
+Route::get('showStudentWithTeacher/{id}', [StudentController::class,'showStudentWithTeacher']);
 Route::get('showTeacherByStudent', [StudentController::class,'index']);
 Route::put('updateStudent/{id}', [StudentController::class,'update']);
 Route::delete('deleteStudent/{id}', [StudentController::class,'destroy']);

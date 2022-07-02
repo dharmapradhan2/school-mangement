@@ -27,6 +27,6 @@ class Teacher extends Model
     // by teacher we will get students data
     public function students()
     {
-        return $this->belongsToMany(Student::class,'students_teachers', 'teach_id','stud_id');
+        return $this->belongsToMany(Student::class, 'students_teachers', 'teach_id', 'stud_id');
     }
 }

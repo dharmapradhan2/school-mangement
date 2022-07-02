@@ -17,12 +17,13 @@ class Student extends Model
         'stud_ph_no',
         'father_name',
         'mother_name',
-        'teach_id',
+        'prin_id',
+        'address'
     ];
     public function teachers()
     {
         // belongsTo for one-to-many relationship on the child model
-        return $this->belongsToMany(Teacher::class,'students_teachers', 'teach_id','stud_id');
+        return $this->belongsToMany(Teacher::class, 'students_teachers', 'stud_id', 'teach_id');
     }
     public function principal()
     {
