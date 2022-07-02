@@ -1,15 +1,28 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import { http } from "../../../CommonApi/http";
 function Teacher() {
+  useEffect(() => {
+    const getTeachersData = async () => {
+      await http.get("showStudentsByTeacher").then((res) => {
+        let [...data] = res.data;
+        // setPrincipal(data[0]);
+        // setTeacherData(data[0].teachers_data);
+        console.log(data);
+      });
+    };
+    return () => {
+      getTeachersData();
+    };
+  }, []);
   return (
     <div className="container-fluid mt-1 p-1">
-      <div class="card border-primary">
-        <div class="card-header text-center border-primary border-3">
+      <div className="card border-primary">
+        <div className="card-header text-center border-primary border-3">
           Details Of Teacher's
         </div>
-        <div class="card-body">
-          <table class="table table-striped table-inverse table-responsive">
-            <thead class="thead-inverse">
+        <div className="card-body">
+          <table className="table table-striped table-inverse table-responsive">
+            <thead className="thead-inverse">
               <tr>
                 <th>No.</th>
                 <th>Name of Teacher</th>
