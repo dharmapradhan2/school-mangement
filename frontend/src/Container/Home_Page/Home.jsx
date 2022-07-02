@@ -9,12 +9,14 @@ function Home() {
       await http.get("getPrincipal").then((res) => {
         let [...data] = res.data;
         setPrincipal(data);
-        console.log(principal);
-      }); 
+      });
     };
-    getPrincipalData();
+    return () => {
+      getPrincipalData();
+    };
   }, []);
 
+  console.log(principal);
   return (
     <div className="container-fluid mt-1 p-1">
       <div className="card text-center">
