@@ -22,7 +22,6 @@ function Teacher() {
   function handleStudents(id) {
     let studData = teachers.filter((data) => data.teach_id == id);
     setStudents(studData[0].students);
-    // console.log(studData[0].students);
   }
   // console.log(showData.students);
   let html = "";
@@ -67,8 +66,8 @@ function Teacher() {
         <div className="card-header text-center border-primary border-3">
           Details Of Teacher's
         </div>
-        <div className="card-body container-fluid">
-          <table className="table table-striped table-inverse table-responsive">
+        <div className="card-body table-sm-responsive">
+          <table className="table table-striped table-sm-responsive text-center">
             <thead className="thead-inverse">
               <tr>
                 <th>No.</th>
@@ -81,116 +80,104 @@ function Teacher() {
             <tbody>{html}</tbody>
           </table>
         </div>
-        {/* <!-- Modal 1--> */}
-        <div
-          className="modal fade"
-          id="exampleModal1"
-          tabIndex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">
-                  Details of Teacher
-                </h5>
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div className="modal-body container-fluid">
-                <div className="container-fluid">
-                  <div className="row">
-                    <div className="col-sm-12">
-                      <div className="row">
-                        <div className="col-6 col-sm-6">
-                          <pre>Teacher Name :</pre>
-                          <pre>Teacher Email :</pre>
-                          <pre>Teacher Phone No. :</pre>
-                          <pre>Teacher Qualification :</pre>
-                          <pre>Teacher Address :</pre>
-                          <pre>No of Students assigned :</pre>
-                        </div>
-                        <div className="col-6 col-sm-6">
-                          <pre>{showData.teach_name}</pre>
-                          <pre>{showData.teach_email}</pre>
-                          <pre>{showData.teach_contact}</pre>
-                          <pre>{showData.teach_qualification}</pre>
-                          <pre>{showData.teach_address}</pre>
-                          <pre>{showData.students?.length}</pre>
-                        </div>
+      </div>
+      {/* <!-- Modal 1--> */}
+      <div
+        className="modal fade"
+        id="exampleModal1"
+        tabIndex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">
+                Details of Teacher
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body container-fluid">
+              <div className="container-fluid">
+                <div className="row">
+                  <div className="col-sm-12">
+                    <div className="row">
+                      <div className="col-6 col-sm-6">
+                        <pre>Teacher Name :</pre>
+                        <pre>Teacher Email :</pre>
+                        <pre>Teacher Phone No. :</pre>
+                        <pre>Teacher Qualification :</pre>
+                        <pre>Teacher Address :</pre>
+                        <pre>No of Students assigned :</pre>
+                      </div>
+                      <div className="col-6 col-sm-6">
+                        <pre>{showData.teach_name}</pre>
+                        <pre>{showData.teach_email}</pre>
+                        <pre>{showData.teach_contact}</pre>
+                        <pre>{showData.teach_qualification}</pre>
+                        <pre>{showData.teach_address}</pre>
+                        <pre>{showData.students?.length}</pre>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-              {/* <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                  <button type="button" className="btn btn-primary">
-                    Save changes
-                  </button>
-                </div> */}
             </div>
           </div>
         </div>
-        {/* model 2 */}
-        <div
-          className="modal fade"
-          id="exampleModal2"
-          tabIndex="-1"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title" id="exampleModalLabel">
-                  Assigned Students Details
-                </h5>
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div className="modal-body container-fluid">
-                <div className="container-fluid">
-                  <div className="row">
-                    <div className="col-sm-12">
-                      <table className="table table-sm">
-                        <thead>
-                          <tr>
-                            <th>Roll No.</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Class</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {students.map((item, i) => {
-                            return (
-                              <tr key={i}>
-                                <td>{item.stud_id}</td>
-                                <td>{item.stud_name}</td>
-                                <td>{item.stud_email}</td>
-                                <td>{item.stud_class}</td>
-                              </tr>
-                            );
-                          })}
-                        </tbody>
-                      </table>
-                    </div>
+      </div>
+      {/* model 2 */}
+      <div
+        className="modal fade"
+        id="exampleModal2"
+        tabIndex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">
+                Assigned Students Details
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body container-fluid">
+              <div className="container-fluid">
+                <div className="row">
+                  <div className="col-sm-12">
+                    <table className="table table-sm">
+                      <thead>
+                        <tr>
+                          <th>Roll No.</th>
+                          <th>Name</th>
+                          <th>Email</th>
+                          <th>Class</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {students.map((item, i) => {
+                          return (
+                            <tr key={i}>
+                              <td>{item.stud_id}</td>
+                              <td>{item.stud_name}</td>
+                              <td>{item.stud_email}</td>
+                              <td>{item.stud_class}</td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
