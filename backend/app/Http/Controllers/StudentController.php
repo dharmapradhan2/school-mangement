@@ -21,6 +21,8 @@ class StudentController extends Controller
             return response()->json(['error' => 'No Data is here..'], 404);
         }
     }
+
+    // show all students with thier teachers
     public function index()
     {
         $data = Student::with('teachers')->get();
@@ -84,6 +86,8 @@ class StudentController extends Controller
      * @param  \App\Models\Student  $Student
      * @return \Illuminate\Http\Response
      */
+
+    // show single student data
     public function show(Student $Student, $id)
     {
         $data = $Student::find($id);

@@ -19,7 +19,7 @@ class PrincipalController extends Controller
         // $total = $principal->pluck('teachers.sms')->sum('price');
         // return $total;
 
-        return response()->json(['data' => $principal], 200);
+        return response()->json($principal, 200);
     }
 
     /**

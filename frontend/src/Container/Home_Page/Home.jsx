@@ -1,17 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { http } from "../../CommonApi/http";
 import "./Home.css";
 function Home() {
+  const [principal, setPrincipal] = useState([]);
   useEffect(() => {
     const getPrincipalData = async () => {
       await http.get("getPrincipal").then((res) => {
-        console.log(res);
-      });
+        let [...data] = res.data;
+        setPrincipal(data);
+        console.log(principal);
+      }); 
     };
-    return () => {
-      getPrincipalData();
-    };
+    getPrincipalData();
   }, []);
 
   return (

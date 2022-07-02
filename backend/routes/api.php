@@ -22,6 +22,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('getPrincipal', [PrincipalController::class,'index']);
+// Route::get('getPrincipalWithTeachers', [PrincipalController::class,'index']);
 // Teacacher actions
 Route::get('getTeachers', [TeacherController::class,'getTeachers']);
 Route::post('storeTeacher', [TeacherController::class,'store']);
