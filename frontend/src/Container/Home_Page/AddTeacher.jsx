@@ -59,6 +59,11 @@ function AddTeacher() {
                       {...register("name", { required: true })}
                     />
                     <label htmlFor="floatingInputInvalid">Enter Name</label>
+                    {errors.name && (
+                      <span className="text-danger float-start small">
+                        This field is required
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="col-sm">
@@ -72,6 +77,11 @@ function AddTeacher() {
                       {...register("email", { required: true })}
                     />
                     <label htmlFor="floatingInputInvalid">Enter Email</label>
+                    {errors.email && (
+                      <span className="text-danger float-start small">
+                        This field is required
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -89,6 +99,11 @@ function AddTeacher() {
                     <label htmlFor="floatingInputInvalid">
                       Enter Qualification
                     </label>
+                    {errors.qualification && (
+                      <span className="text-danger float-start small">
+                        This field is required
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="col-sm">
@@ -104,6 +119,11 @@ function AddTeacher() {
                     <label htmlFor="floatingInputInvalid">
                       Enter Contact Number
                     </label>
+                    {errors.phone && (
+                      <span className="text-danger float-start small">
+                        This field is required
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
@@ -119,6 +139,11 @@ function AddTeacher() {
                       {...register("address", { required: true })}
                     />
                     <label htmlFor="floatingInputInvalid">Address</label>
+                    {errors.address && (
+                      <span className="text-danger float-start small">
+                        This field is required
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="col-sm">
@@ -132,6 +157,11 @@ function AddTeacher() {
                       {...register("city", { required: true })}
                     />
                     <label htmlFor="floatingInputInvalid">City</label>
+                    {errors.city && (
+                      <span className="text-danger float-start small">
+                        This field is required
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
