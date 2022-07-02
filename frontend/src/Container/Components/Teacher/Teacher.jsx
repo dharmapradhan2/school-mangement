@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { http } from "../../../CommonApi/http";
 function Teacher() {
   const [teachers, setteachers] = useState([]);
+  const [students, setStudents] = useState([]);
   const [showData, setShowData] = useState([]);
   useEffect(() => {
     const getTeachersData = async () => {
@@ -18,7 +19,12 @@ function Teacher() {
     let dataIs = teachers.filter((data) => data.teach_id === id);
     setShowData(dataIs[0]);
   }
-  console.log(teachers);
+  function handleStudents(id) {
+    let studData = teachers.filter((data) => data.teach_id == id);
+    setStudents(studData[0].students);
+    // console.log(studData[0].students);
+  }
+  // console.log(showData.students);
   let html = "";
   if (teachers) {
     html = teachers.map((data, i) => {
@@ -32,10 +38,21 @@ function Teacher() {
               type="button"
               className="btn btn-sm btn-info m-0 p-1"
               data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
+              data-bs-target="#exampleModal1"
               onClick={() => handleShow(data.teach_id)}
             >
               Details
+            </button>
+          </td>{" "}
+          <td>
+            <button
+              type="button"
+              className="btn btn-sm btn-info m-0 p-1"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal2"
+              onClick={() => handleStudents(data.teach_id)}
+            >
+              Show
             </button>
           </td>
         </tr>
@@ -58,15 +75,16 @@ function Teacher() {
                 <th>Name of Teacher</th>
                 <th>Contact</th>
                 <th>Action</th>
+                <th>Assigned Students</th>
               </tr>
             </thead>
             <tbody>{html}</tbody>
           </table>
         </div>
-        {/* <!-- Modal --> */}
+        {/* <!-- Modal 1--> */}
         <div
           className="modal fade"
-          id="exampleModal"
+          id="exampleModal1"
           tabIndex="-1"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
@@ -88,7 +106,7 @@ function Teacher() {
                 <div className="container-fluid">
                   <div className="row">
                     <div className="col-sm-12">
-                      <div className="row">
+                      <div className="row text-wrap">
                         <div className="col-6 col-sm-6">
                           <pre>Teacher Name :</pre>
                           <pre>Teacher Email :</pre>
@@ -103,9 +121,74 @@ function Teacher() {
                           <pre>{showData.teach_contact}</pre>
                           <pre>{showData.teach_qualification}</pre>
                           <pre>{showData.teach_address}</pre>
-                          {/* <pre>{Object.values(showData.students).length}</pre> */}
+                          <pre>{showData.students?.length}</pre>
                         </div>
                       </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* <div className="modal-footer">
+                  <button
+                    type="button"
+                    className="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button type="button" className="btn btn-primary">
+                    Save changes
+                  </button>
+                </div> */}
+            </div>
+          </div>
+        </div>
+        <div
+          className="modal fade"
+          id="exampleModal2"
+          tabIndex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">
+                  Assigned Students Details
+                </h5>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body container-fluid">
+                <div className="container-fluid">
+                  <div className="row">
+                    <div className="col-sm-12">
+                      <table className="table table-sm text-wrap">
+                        <thead>
+                          <tr>
+                            <th>Roll No.</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Class</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {students.map((item, i) => {
+                            return (
+                              <tr key={i}>
+                                <td>{item.stud_id}</td>
+                                <td>{item.stud_name}</td>
+                                <td>{item.stud_email}</td>
+                                <td>{item.stud_class}</td>
+                              </tr>
+                            );
+                          })}
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                 </div>
