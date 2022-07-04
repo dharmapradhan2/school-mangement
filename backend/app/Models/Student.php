@@ -18,7 +18,7 @@ class Student extends Model
         'father_name',
         'mother_name',
         'prin_id',
-        'address'
+        'address', 'gender'
     ];
     public function teachers()
     {

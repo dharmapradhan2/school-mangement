@@ -17,11 +17,11 @@ class CreateTeachersTable extends Migration
             $table->id('teach_id');
             $table->string('teach_name');
             $table->string('teach_email');
-            $table->string('teach_qualification');
+            $table->string('teach_subject');
             $table->string('teach_contact');
             $table->string('teach_address');
             $table->string('teach_city');
-            // $table->unsignedBigInteger('prin_id');
+            $table->string('gender');
             $table->foreignId('prin_id')->references('prin_id')->on('principal')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

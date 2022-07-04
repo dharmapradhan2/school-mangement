@@ -13,10 +13,10 @@ class Teacher extends Model
     protected $fillable = [
         'teach_name',
         'teach_email',
-        'teach_qualification',
+        'teach_subject',
         'teach_contact',
         'teach_address',
-        'teach_city', 'prin_id'
+        'teach_city', 'prin_id', "gender"
     ];
     // by teacher we will get principal data
     public function principal()

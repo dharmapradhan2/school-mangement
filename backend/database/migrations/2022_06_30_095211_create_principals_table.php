@@ -18,6 +18,7 @@ class CreatePrincipalsTable extends Migration
             $table->string('prin_name');
             $table->string('prin_qulification');
             $table->string('prin_contact');
+            $table->string('gender');
             $table->timestamps();
         });
     }

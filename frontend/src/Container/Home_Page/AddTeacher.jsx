@@ -1,15 +1,47 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
-
+import { http } from "../../CommonApi/http";
+import Swal from "sweetalert2";
 function AddTeacher() {
   const {
     register,
     handleSubmit,
-    watch,
+    reset,
     formState: { errors },
   } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = async (data) => {
+    data = JSON.stringify({ ...data, prin_id: 1 });
+    console.log(data);
+    await http
+      .post("storeTeacher", data)
+      .then((res) => {
+        // console.log(res);
+        if (res.status === 200) {
+          Swal.fire({
+            icon: "success",
+            title: "Saved",
+            text: res.data.success,
+          });
+          reset();
+        } else if (res.status === 206) {
+          Swal.fire({
+            icon: "warning",
+            title: "",
+            text: res.data.warning,
+          });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+        });
+      });
+  };
+
   return (
     <div className="container-fluid mt-1 p-1">
       <div className="card text-center">
@@ -45,7 +77,7 @@ function AddTeacher() {
             Add Teacher Details
           </h4>
           <div className="card-body">
-            <form action="" onSubmit={handleSubmit(onSubmit)}>
+            <form id="form" onSubmit={handleSubmit(onSubmit)}>
               <div className="row g-1">
                 <div className="col-sm">
                   <div className="form-floating mb-1 p-0">
@@ -55,11 +87,11 @@ function AddTeacher() {
                       className="form-control form-sm-control border-primary"
                       id="floatingInputInvalid"
                       placeholder=" "
-                      name="name"
-                      {...register("name", { required: true })}
+                      name="teach_name"
+                      {...register("teach_name", { required: true })}
                     />
                     <label htmlFor="floatingInputInvalid">Enter Name</label>
-                    {errors.name && (
+                    {errors.teach_name && (
                       <span className="text-danger float-start small">
                         This field is required
                       </span>
@@ -73,11 +105,13 @@ function AddTeacher() {
                       className="form-control form-sm-control border-primary"
                       id="floatingInputInvalid"
                       placeholder=" "
-                      name="email"
-                      {...register("email", { required: true })}
+                      name="teach_email"
+                      {...register("teach_email", {
+                        required: true,
+                      })}
                     />
                     <label htmlFor="floatingInputInvalid">Enter Email</label>
-                    {errors.email && (
+                    {errors.teach_email && (
                       <span className="text-danger float-start small">
                         This field is required
                       </span>
@@ -93,13 +127,11 @@ function AddTeacher() {
                       className="form-control form-sm-control border-primary"
                       id="floatingInputInvalid"
                       placeholder=" "
-                      name="qualification"
-                      {...register("qualification", { required: true })}
+                      name="teach_subject"
+                      {...register("teach_subject", { required: true })}
                     />
-                    <label htmlFor="floatingInputInvalid">
-                      Enter Qualification
-                    </label>
-                    {errors.qualification && (
+                    <label htmlFor="floatingInputInvalid">Enter subject</label>
+                    {errors.teach_subject && (
                       <span className="text-danger float-start small">
                         This field is required
                       </span>
@@ -113,13 +145,13 @@ function AddTeacher() {
                       className="form-control form-sm-control border-primary"
                       id="floatingInputInvalid"
                       placeholder=" "
-                      name="phone"
-                      {...register("phone", { required: true })}
+                      name="teach_contact"
+                      {...register("teach_contact", { required: true })}
                     />
                     <label htmlFor="floatingInputInvalid">
                       Enter Contact Number
                     </label>
-                    {errors.phone && (
+                    {errors.teach_contact && (
                       <span className="text-danger float-start small">
                         This field is required
                       </span>
@@ -135,11 +167,11 @@ function AddTeacher() {
                       className="form-control form-sm-control border-primary"
                       id="floatingInputInvalid"
                       placeholder=" "
-                      name="address"
-                      {...register("address", { required: true })}
+                      name="teach_address"
+                      {...register("teach_address", { required: true })}
                     />
                     <label htmlFor="floatingInputInvalid">Address</label>
-                    {errors.address && (
+                    {errors.teach_address && (
                       <span className="text-danger float-start small">
                         This field is required
                       </span>
@@ -153,20 +185,38 @@ function AddTeacher() {
                       className="form-control form-sm-control border-primary"
                       id="floatingInputInvalid"
                       placeholder=" "
-                      name="city"
-                      {...register("city", { required: true })}
+                      name="teach_city"
+                      {...register("teach_city", { required: true })}
                     />
                     <label htmlFor="floatingInputInvalid">City</label>
-                    {errors.city && (
+                    {errors.teach_city && (
                       <span className="text-danger float-start small">
                         This field is required
                       </span>
                     )}
                   </div>
                 </div>
+                <div className="row g-1">
+                  <div className="col-sm">
+                    <div className="form-floating mb-1 p-0">
+                      <select
+                        className="form-select border-primary"
+                        id="floatingSelect"
+                        {...register("gender", { required: true })}
+                      >
+                        <option value="male">male</option>
+                        <option value="female">female</option>
+                        <option value="other">other</option>
+                      </select>
+                      <label htmlFor="floatingSelect">Select Gender</label>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="row g-1">
-                <button className="btn btn-primary">Add Teacher</button>
+                <button type="submit" className="btn btn-primary">
+                  Add Teacher
+                </button>
               </div>
             </form>
           </div>

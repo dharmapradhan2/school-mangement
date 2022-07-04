@@ -56,7 +56,8 @@ class StudentController extends Controller
             'stud_mother_name' => 'required',
             'stud_address' => 'required',
             'prin_id' => 'required',
-            'teach_id' => 'required|array',
+            'gender' => 'required',
+            'teach_id' => 'array',
         ]);
         $search = Student::where('stud_name', $request->stud_name)->where('stud_email', $request->stud_email)->get();
         if (count($search) == 0) {
@@ -69,6 +70,7 @@ class StudentController extends Controller
                 'mother_name' => $request['stud_mother_name'],
                 'address' => $request['stud_address'],
                 'prin_id' => $request['prin_id'],
+                'gender' => $request['gender'],
             ]);
             $teach_id = $request->teach_id;
             $Student->teachers()->attach($teach_id);
@@ -132,24 +134,28 @@ class StudentController extends Controller
             'stud_email' => 'required|email',
             'stud_class' => 'required',
             'stud_ph_no' => 'required',
-            'stud_father_name' => 'required',
-            'stud_mother_name' => 'required',
-            'stud_address' => 'required',
+            'father_name' => 'required',
+            'mother_name' => 'required',
+            'address' => 'required',
             'prin_id' => 'required',
+            'gender' => 'required',
             'teach_id' => 'required|array',
         ]);
+        $find=$Student::find($id);
         $update = $Student::where('stud_id', $id)->update([
             'stud_name' => $request['stud_name'],
             'stud_email' => $request['stud_email'],
             'stud_class' => $request['stud_class'],
             'stud_ph_no' => $request['stud_ph_no'],
-            'father_name' => $request['stud_father_name'],
-            'mother_name' => $request['stud_mother_name'],
-            'address' => $request['stud_address'],
+            'father_name' => $request['father_name'],
+            'mother_name' => $request['mother_name'],
+            'address' => $request['address'],
+            'gender' => $request['gender'],
             'prin_id' => $request['prin_id'],
         ]);
         $teach_id = $request->teach_id;
-        $Student->teachers()->attach($teach_id);
+        // $find->teachers()->detach();
+        $find->teachers()->sync($teach_id);
         if ($update) {
             return response()->json(['success' => 'Student\'s data is updated Sucessfully.'], 200);
         } else {
@@ -167,6 +173,7 @@ class StudentController extends Controller
     {
         $Destroy = $Student::find($id);
         if ($Destroy) {
+            $Destroy->teachers()->detach();
             $Destroy->delete();
             return response()->json(['success' => 'Data successfully deleted.'], 200);
         } else {

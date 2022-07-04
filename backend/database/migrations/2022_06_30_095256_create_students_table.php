@@ -21,9 +21,8 @@ class CreateStudentsTable extends Migration
             $table->string('stud_ph_no');
             $table->string('father_name');
             $table->string('mother_name');
-            // $table->unsignedBigInteger('teach_id');
-            // $table->unsignedBigInteger('prin_id');
-            // $table->foreignId('teach_id')->references('teach_id')->on('teachers')->onUpdate('cascade')->onDelete('cascade');
+            $table->string('address')->nullable();
+            $table->string('gender');
             $table->foreignId('prin_id')->references('prin_id')->on('principal')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });

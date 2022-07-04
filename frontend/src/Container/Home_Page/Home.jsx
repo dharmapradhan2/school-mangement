@@ -47,7 +47,7 @@ function Home() {
       );
     });
   } else if (teacherData.length === 0) {
-    teacherHtml = <tr>Empty...</tr>;
+    teacherHtml = <tr><td colSpan={3}>Data is Empty...</td></tr>;
   }
   if (principal) {
     html = (
@@ -158,14 +158,14 @@ function Home() {
                             <pre>Teacher Name :</pre>
                             <pre>Teacher Email :</pre>
                             <pre>Teacher Phone No. :</pre>
-                            <pre>Teacher Qualification :</pre>
+                            <pre>Subjects :</pre>
                             <pre>Teacher Address :</pre>
                           </div>
                           <div className="col-6 col-sm-6">
                             <pre>{showData.teach_name}</pre>
                             <pre>{showData.teach_email}</pre>
                             <pre>{showData.teach_contact}</pre>
-                            <pre>{showData.teach_qualification}</pre>
+                            <pre>{showData.teach_subject}</pre>
                             <pre>{showData.teach_address}</pre>
                           </div>
                         </div>

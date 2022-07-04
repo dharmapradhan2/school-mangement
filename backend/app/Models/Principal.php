@@ -13,7 +13,7 @@ class Principal extends Model
     protected $fillable = [
         'prin_name',
         'prin_qulification',
-        'prin_contact',
+        'prin_contact', 'gender'
     ];
 
     public function teachersData()
