@@ -6,7 +6,7 @@ import "react-multiple-select-dropdown-lite/dist/index.css";
 import { http } from "../../../CommonApi/http";
 import Swal from "sweetalert2";
 function UpdateStudent() {
-  const [selectedTeacher, setSelectedTeacher] = useState([]);
+  // const [selectedTeacher, setSelectedTeacher] = useState([]);
   const navigate = useNavigate();
   // fetch data through url
   let { id } = useParams();
@@ -56,7 +56,7 @@ function UpdateStudent() {
         .get(`showStudentWithTeacher/${id}`)
         .then((res) => {
           if (res.status === 200) {
-            setSelectedTeacher(res.data?.teachers);
+            // setSelectedTeacher(res.data?.teachers);
             reset(res.data);
           }
         })
